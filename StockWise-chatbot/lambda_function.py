@@ -17,7 +17,7 @@ def close(message):
 
 
 def call_quote_api(ticker):
-    response = urlopen('https://api.iextrading.com/1.0/stock/{}/delayed-quote'.format(ticker))
+    response = urlopen('https://cloud.iexapis.com/stable/stock/{}/quote?token=<UR API TOKEN> '.format(ticker))
     response = json.load(response)
     return response['delayedPrice']
 
@@ -36,5 +36,7 @@ def lambda_handler(event, context):
 
     if intent == 'GetQuote':
         return get_quote(event)
+
+    return "Sorry, I'm not sure what you have in mind.  Please try again."
 
     return "Sorry, I'm not sure what you have in mind.  Please try again."
